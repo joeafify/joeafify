@@ -4,23 +4,26 @@ import SquareLoader from "@/components/SquareLoader";
 import TimelineListItem from "@/components/TimelineListItem";
 import TimelineSidebar from "@/components/TimelineSidebar";
 import { Locale } from "@/i18n-config";
-import { TimelineItem } from "@/interfaces";
 import { JourneyItem } from "@/payload-types";
 import { useState } from "react";
 
-export default function JourneyClient({ lang, dict, initialItems }: { lang: Locale, dict: any, initialItems: JourneyItem[] }) {
-  const transformedItems: TimelineItem[] = initialItems.map((item) => ({
+export default function JourneyClient({ lang, dict, initialItems }: { lang: Locale, dict: any, initialItems:  JourneyItem[] }) {
+  const transformedItems: JourneyItem[] = initialItems.map((item) => ({
+    id: item.id,
+    createdAt: item.createdAt,
+    updatedAt: item.updatedAt,
+    isCurrent: item.isCurrent,
     startMonth: item.startMonth,
     startYear: item.startYear,
     endMonth: item.endMonth || undefined,
     endYear: item.endYear || undefined,
     employer: item.employer,
-    job_title: item.jobTitle,
+    jobTitle: item.jobTitle,
     responsibilities: item.responsibilities,
-    tags: item.tags?.map(t => t.name).filter(Boolean) as string[],
+    tags: item.tags,
   }));
 
-  const [items] = useState<TimelineItem[]>(transformedItems);
+  const [items] = useState<JourneyItem[]>(transformedItems);
   const [loading] = useState(false);
 
   return (

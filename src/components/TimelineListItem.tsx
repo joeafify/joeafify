@@ -1,19 +1,19 @@
-import { TimelineItem } from "@/interfaces";
 import { formatYear } from "@/utils/i18n";
+import { JourneyItem } from "@/payload-types";
 
 export default function TimelineListItem({
   startMonth,
   startYear,
   endMonth,
   endYear,
-  job_title,
-  description,
+  jobTitle,
+  employer,
   responsibilities,
   tags,
-  alignment,
   lang,
   dict,
-}: TimelineItem & { lang: string; dict: { journey: { present: string }; months: Record<string, string> } }) {
+  alignment
+}: JourneyItem & { alignment: string; lang: string; dict: { journey: { present: string }; months: Record<string, string> } }) {
   const isLeft = alignment === "left";
   const colorClass = isLeft
     ? "text-ocean-light border-ocean-light/20"
@@ -46,8 +46,8 @@ export default function TimelineListItem({
                 {formattedYears}
               </span>
             </div>
-            <h3 className="text-2xl font-bold mb-2">{job_title}</h3>
-            {description && <p className="text-slate-400 text-sm mb-4 leading-relaxed">{description}</p>}
+            <h3 className="text-2xl font-bold mb-2">{jobTitle}</h3>
+            {responsibilities && <p className="text-slate-400 text-sm mb-4 leading-relaxed">{responsibilities}</p>}
             {responsibilities && responsibilities.length > 0 && (
               <p className="text-slate-400 text-sm mb-4 leading-relaxed">
                 {responsibilities}
@@ -59,7 +59,7 @@ export default function TimelineListItem({
                   key={index}
                   className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-ocean-light border-ocean-light/20"}`}
                 >
-                  {tag.toLocaleUpperCase()}
+                  {tag?.name?.toLocaleUpperCase()}
                 </span>
               ))}
             </div>
@@ -87,8 +87,8 @@ export default function TimelineListItem({
                 {formattedYears}
               </span>
             </div>
-            <h3 className="text-2xl font-bold mb-2">{job_title}</h3>
-            {description && <p className="text-slate-400 text-sm mb-4 leading-relaxed">{description}</p>}
+            <h3 className="text-2xl font-bold mb-2">{jobTitle}</h3>
+            {responsibilities && <p className="text-slate-400 text-sm mb-4 leading-relaxed">{responsibilities}</p>}
             {responsibilities && responsibilities.length > 0 && (
               <p className="text-slate-400 text-sm mb-4 leading-relaxed">
                 {responsibilities}
@@ -100,7 +100,7 @@ export default function TimelineListItem({
                   key={index}
                   className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-ocean-light border-ocean-light/20"}`}
                 >
-                  {tag.toLocaleUpperCase()}
+                  {tag?.name?.toLocaleUpperCase()}
                 </span>
               ))}
             </div>

@@ -2,12 +2,11 @@
 
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-
-import { TimelineItem } from "@/interfaces";
 import { formatYear } from "@/utils/i18n";
+import { JourneyItem } from "@/payload-types";
 
 interface TimelineSidebarProps {
-  items: TimelineItem[];
+  items: JourneyItem[];
   lang: string;
 }
 

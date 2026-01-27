@@ -203,8 +203,8 @@ export interface JourneyItem {
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
+  updatedAt?: string;
+  createdAt?: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
