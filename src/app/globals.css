@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6c2bee;
+  --color-ocean-dark: #0f172a;
+  --color-ocean-light: #38bdf8;
+  --color-background-light: #f6f6f8;
+  --color-background-dark: #020617;
+
+  --font-display: var(--font-space-grotesk), sans-serif;
+
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+/* Custom variant for dark mode class strategy */
+@variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.font-display-en * {
+  font-family: var(--font-space-grotesk), sans-serif !important;
+}
+
+body.font-display-ar * {
+  font-family: var(--font-rubik), sans-serif !important;
+}
+
+.glass {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 20px rgba(108, 43, 238, 0.4);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #38bdf8, #6c2bee);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-glow {
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+.timeline-line {
+  background: linear-gradient(to bottom, #38bdf8, #6c2bee, #38bdf8);
+}
+
+.glow-node {
+  box-shadow: 0 0 15px rgba(108, 43, 238, 0.6);
+}
+
+.bg-dots {
+  background-image: radial-gradient(circle at 2px 2px,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 0);
+  background-size: 40px 40px;
+}
+
+/* 404 page styles */
+
+.neon-flicker {
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #6c2bee,
+    0 0 82px #6c2bee,
+    0 0 92px #6c2bee,
+    0 0 102px #6c2bee,
+    0 0 151px #6c2bee;
+}
+
+.floating-island {
+  filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.2));
+}
+
+.broken-bridge {
+  clip-path: polygon(0% 0%, 45% 0%, 40% 100%, 0% 100%, 60% 100%, 55% 0%, 100% 0%, 100% 100%);
+}
+
+/* Loading page styles */
+
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+@keyframes rotate-shape {
+  0% {
+    border-top-color: var(--color-primary);
+  }
+
+  25% {
+    border-right-color: var(--color-ocean-light);
+  }
+
+  50% {
+    border-bottom-color: var(--color-ocean-light);
+  }
+
+  75% {
+    border-left-color: var(--color-ocean-light);
+  }
+
+  100% {
+    border-top-color: var(--color-ocean-light);
+  }
+}
+
+html:has(.full-screen-loader) {
+  scrollbar-width: none;
+}
+
+.animate-loader {
+  animation: rotate-shape 3s ease-in-out infinite;
+  border-color: var(--color-primary);
+}
