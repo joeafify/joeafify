@@ -20,6 +20,7 @@
     "@payloadcms/db-postgres": "^3.73.0",
     "@payloadcms/next": "^3.72.0",
     "@payloadcms/richtext-lexical": "^3.72.0",
+    "@payloadcms/storage-uploadthing": "^3.73.0",
     "@payloadcms/translations": "^3.72.0",
     "graphql": "^16.12.0",
     "lucide-react": "^0.562.0",

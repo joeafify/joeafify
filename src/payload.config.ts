@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import { ar } from '@payloadcms/translations/languages/ar'
 import { en } from '@payloadcms/translations/languages/en'
 import path from 'path'
@@ -33,7 +34,23 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    uploadthingStorage({
+      collections: {
+        media: {
+          prefix: 'media',
+          generateFileURL: (filename) => `${process.env.SITE_URL}/api/${filename.prefix}/file/${filename.filename}`
+        },
+      },
+      options: {
+        token: process.env.UPLOADTHING_TOKEN || '',
+        acl: 'public-read',
+      },
+    })
+  ],
+  cors: {
+    origins: ["http://localhost:3000", "*"],
+  },
   localization: {
     defaultLocale: 'en',
     locales: [{ code: 'en', label: 'English' }, { code: 'ar', label: 'Arabic', rtl: true }],
