@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Home",
+    "journey": "Work",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "badge": "Available for new projects",
+    "title_part1": "Crafting",
+    "title_gradient": "Digital",
+    "title_part2": "Experiences",
+    "description": "Independent Software Engineer focusing on interactive, high-performance web products.",
+    "view_work": "View Work",
+    "get_in_touch": "Get in Touch"
+  },
+  "about": {
+    "years_exp": "Years Experience",
+    "title": "Designing with code,",
+    "title_highlight": "building with purpose.",
+    "description": "I'm a digital architect who bridges the gap between design and technology. My approach is rooted in clean aesthetics and robust performance, ensuring every pixel serves a functional goal.",
+    "strategy_title": "Strategy",
+    "strategy_desc": "Defining goals and user journeys before writing a single line of code.",
+    "execution_title": "Execution",
+    "execution_desc": "Writing clean, modular TypeScript and CSS that scales with your business.",
+    "journey_link": "Read more about my journey"
+  },
+  "expertise": {
+    "title": "Expertise & Technologies"
+  },
+  "projects": {
+    "title": "Selected Works",
+    "description": "A collection of projects ranging from high-traffic e-commerce to bespoke creative experiments.",
+    "view_archive": "View Archive",
+    "project1": {
+      "title": "Oceanic Analytics",
+      "description": "A real-time data visualization dashboard for marine research and climate monitoring."
+    },
+    "project2": {
+      "title": "Aura E-Commerce",
+      "description": "Next-gen shopping experience with focus on immersive product storytelling and seamless checkout."
+    }
+  },
+  "contact": {
+    "title_part1": "Let's build",
+    "title_gradient": "something epic.",
+    "description": "Currently accepting freelance projects and consulting opportunities.",
+    "location_label": "Location",
+    "location_value": "Cairo, Egypt",
+    "form": {
+      "name_label": "Full Name",
+      "name_placeholder": "John Doe",
+      "email_label": "Email Address",
+      "email_placeholder": "john@example.com",
+      "details_label": "Project Details",
+      "details_placeholder": "Tell me about your project...",
+      "submit": "Send Message"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "journey": {
+    "present": "Present"
+  },
+  "months": {
+    "Jan": "Jan",
+    "Feb": "Feb",
+    "Mar": "Mar",
+    "Apr": "Apr",
+    "May": "May",
+    "Jun": "Jun",
+    "Jul": "Jul",
+    "Aug": "Aug",
+    "Sep": "Sep",
+    "Oct": "Oct",
+    "Nov": "Nov",
+    "Dec": "Dec"
+  },
+  "not_found": {
+    "title": "404",
+    "subtitle_part1": "Whoops! This route seems to be",
+    "subtitle_gradient": "under construction...",
+    "subtitle_part2": "or maybe it never existed.",
+    "description": "Either way, you're not lost, you're just exploring the unknown. Let's get you back on track.",
+    "back_home": "Back to Home"
+  }
+}
