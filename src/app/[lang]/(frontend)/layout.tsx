@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import Footer from "@/components/Footer";
 import ConfigurationSwitcher from "@/components/ConfigurationSwitcher";
 import { getDictionary } from "@/get-dictionary";

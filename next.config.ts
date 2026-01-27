@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   experimental: {
     globalNotFound: true,
   },
+  output: 'standalone',
 };
 
 export default withPayload(nextConfig);
