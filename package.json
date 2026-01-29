@@ -22,6 +22,7 @@
     "@payloadcms/richtext-lexical": "^3.72.0",
     "@payloadcms/storage-uploadthing": "^3.73.0",
     "@payloadcms/translations": "^3.72.0",
+    "envalid": "^8.1.1",
     "graphql": "^16.12.0",
     "lucide-react": "^0.562.0",
     "negotiator": "^1.0.0",

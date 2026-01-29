@@ -11,6 +11,7 @@ import { JourneyItems } from './collections/JourneyItems'
 import { Media } from './collections/Media'
 import { Projects } from './collections/Projects'
 import { Users } from './collections/Users'
+import { env } from '@/utils/env'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -24,13 +25,13 @@ export default buildConfig({
   },
   collections: [Users, Media, Projects, JourneyItems],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '9fZxQ9RrK1X8lq0M5A+VYtY6wRk4cC7n',
+  secret: env.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.NETLIFY_DATABASE_URL || '',
+      connectionString: env.NETLIFY_DATABASE_URL,
     },
   }),
   sharp,
@@ -39,11 +40,11 @@ export default buildConfig({
       collections: {
         media: {
           prefix: 'media',
-          generateFileURL: (filename) => `${process.env.SITE_URL}/api/${filename.prefix}/file/${filename.filename}`
+          generateFileURL: (filename) => `${env.SITE_URL}/api/${filename.prefix}/file/${filename.filename}`
         },
       },
       options: {
-        token: process.env.UPLOADTHING_TOKEN || '',
+        token: env.UPLOADTHING_TOKEN,
         acl: 'public-read',
       },
     })
