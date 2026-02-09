@@ -14,6 +14,7 @@ export default function TimelineSidebar({ items, lang }: TimelineSidebarProps) {
   // Generate section IDs to observe
   const sectionIds = items.map((item) => `journey-${item.startYear}`);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const dates = new Set(items.map((item) => item.startYear));
   const activeSection = useActiveSection(
     sectionIds,
     {
@@ -30,8 +31,8 @@ export default function TimelineSidebar({ items, lang }: TimelineSidebarProps) {
       <div
         className={`flex flex-col gap-2 items-end relative rounded-xl border-3 ${sectionIds.findIndex((id) => id === activeSection) % 2 === 0 ? "border-ocean-light/20" : "border-primary/20"} p-2`}
       >
-        {items.map((item, index) => {
-          const id = `journey-${item.startYear}`;
+        {Array.from(dates).map((item, index) => {
+          const id = `journey-${item}`;
           const isActive = activeSection === id;
 
           return (
@@ -48,7 +49,7 @@ export default function TimelineSidebar({ items, lang }: TimelineSidebarProps) {
               <span
                 className={`text-sm font-mono tracking-widest ${isActive ? "font-extrabold" : "font-bold"}`}
               >
-                {formatYear(item.startYear, lang)}
+                {formatYear(item, lang)}
               </span>
             </a>
           );

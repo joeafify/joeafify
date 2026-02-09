@@ -7,7 +7,7 @@ import { Locale } from "@/i18n-config";
 import { JourneyItem } from "@/payload-types";
 import { useState } from "react";
 
-export default function JourneyClient({ lang, dict, initialItems }: { lang: Locale, dict: any, initialItems:  JourneyItem[] }) {
+export default function JourneyClient({ lang, dict, initialItems }: { lang: Locale | string, dict: any, initialItems: JourneyItem[] }) {
   const transformedItems: JourneyItem[] = initialItems.map((item) => ({
     id: item.id,
     createdAt: item.createdAt,
@@ -20,7 +20,8 @@ export default function JourneyClient({ lang, dict, initialItems }: { lang: Loca
     employer: item.employer,
     jobTitle: item.jobTitle,
     responsibilities: item.responsibilities,
-    tags: item.tags,
+    category: item.category,
+    techStack: item.techStack,
   }));
 
   const [items] = useState<JourneyItem[]>(transformedItems);
@@ -70,8 +71,7 @@ export default function JourneyClient({ lang, dict, initialItems }: { lang: Loca
               ))}
             </div>
 
-            {/* Sidebar Navigation (Desktop/Tablet) */}
-            <TimelineSidebar items={items} lang={lang} />
+            {items.length > 1 && <TimelineSidebar items={items} lang={lang} />}
           </div>
         )}
       </main>

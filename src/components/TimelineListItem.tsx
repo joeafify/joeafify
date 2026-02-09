@@ -1,5 +1,5 @@
+import { Category, JourneyItem, TechStack } from "@/payload-types";
 import { formatYear } from "@/utils/i18n";
-import { JourneyItem } from "@/payload-types";
 
 export default function TimelineListItem({
   startMonth,
@@ -9,10 +9,11 @@ export default function TimelineListItem({
   jobTitle,
   employer,
   responsibilities,
-  tags,
   lang,
   dict,
-  alignment
+  alignment,
+  category,
+  techStack,
 }: JourneyItem & { alignment: string; lang: string; dict: { journey: { present: string }; months: Record<string, string> } }) {
   const isLeft = alignment === "left";
   const colorClass = isLeft
@@ -48,18 +49,13 @@ export default function TimelineListItem({
             </div>
             <h3 className="text-2xl font-bold mb-2">{jobTitle}</h3>
             {responsibilities && <p className="text-slate-400 text-sm mb-4 leading-relaxed">{responsibilities}</p>}
-            {responsibilities && responsibilities.length > 0 && (
-              <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-                {responsibilities}
-              </p>
-            )}
             <div className={`flex gap-2 justify-start ${lang === "ar" ? "md:justify-start" : "md:justify-end"} flex-wrap`}>
-              {tags?.map((tag, index) => (
+              {[...(techStack || []), ...category]?.map((tag, index) => (
                 <span
                   key={index}
                   className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-ocean-light border-ocean-light/20"}`}
                 >
-                  {tag?.name?.toLocaleUpperCase()}
+                  {(tag as TechStack | Category).name}
                 </span>
               ))}
             </div>
@@ -89,18 +85,13 @@ export default function TimelineListItem({
             </div>
             <h3 className="text-2xl font-bold mb-2">{jobTitle}</h3>
             {responsibilities && <p className="text-slate-400 text-sm mb-4 leading-relaxed">{responsibilities}</p>}
-            {responsibilities && responsibilities.length > 0 && (
-              <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-                {responsibilities}
-              </p>
-            )}
             <div className={`flex gap-2 justify-start ${lang === "ar" ? "md:justify-end" : "md:justify-start"} flex-wrap`}>
-              {tags?.map((tag, index) => (
+              {[...(techStack || []), ...category]?.map((tag, index) => (
                 <span
                   key={index}
                   className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-ocean-light border-ocean-light/20"}`}
                 >
-                  {tag?.name?.toLocaleUpperCase()}
+                  {(tag as TechStack | Category).name}
                 </span>
               ))}
             </div>

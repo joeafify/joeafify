@@ -1,10 +1,10 @@
 export const dynamic = 'force-dynamic'
 
-import Footer from "@/components/Footer";
 import ConfigurationSwitcher from "@/components/ConfigurationSwitcher";
+import Footer from "@/components/Footer";
 import { getDictionary } from "@/get-dictionary";
-import { i18n, type Locale } from "@/i18n-config";
-import type { Metadata } from "next"; 
+import { i18n } from "@/i18n-config";
+import type { Metadata } from "next";
 import { Rubik, Space_Grotesk } from "next/font/google";
 import "../../globals.css";
 
@@ -34,7 +34,7 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }) {
   const lang = (await params).lang;
   const dict = await getDictionary(lang);

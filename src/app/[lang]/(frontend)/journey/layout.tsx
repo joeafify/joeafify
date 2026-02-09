@@ -1,4 +1,3 @@
-import { Locale } from "@/i18n-config";
 import { getRedirectedPathName } from "@/utils/i18n";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
@@ -15,7 +14,7 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
   return (

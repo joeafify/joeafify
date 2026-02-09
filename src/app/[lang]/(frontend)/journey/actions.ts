@@ -7,13 +7,13 @@ import { getPayload } from 'payload';
 export async function getJourneyItemsListing({
   locale
 }: {
-  locale: Locale;
+  locale: Locale | string;
 }) {
   const payload = await getPayload({ config });
   try {
     const { docs } = await payload.find({
       collection: 'journey-items',
-      locale,
+      locale: locale as Locale,
       sort: '-startYear',
       depth: 1,
       limit: 100,
