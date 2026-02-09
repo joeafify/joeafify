@@ -1,6 +1,6 @@
 import { getDictionary } from "@/get-dictionary";
-import type { Locale } from "@/i18n-config";
 import { getRedirectedPathName } from "@/utils/i18n";
+import config from "@payload-config";
 import {
   ArrowDown,
   ArrowLeft,
@@ -11,14 +11,21 @@ import {
   Linkedin,
   Mail,
   MapPin,
-  Sparkles,
+  Sparkles
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getPayload } from "payload";
 
-export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const payload = await getPayload({ config });
+  const { docs: stacks } = await payload.find({
+    collection: "tech-stack",
+    pagination: false,
+    sort: "name"
+  });
 
   return (
     <main>
@@ -127,37 +134,25 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
         </div>
       </section>
       {/* Skills Section - Floating Cloud */}
-      <section className="py-24 bg-ocean-dark/30">
+      <section className="py-24 bg-ocean-dark/30" id="skills">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-slate-500 mb-12">
             {dict.expertise.title}
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {/* Floating tags simulated with varied padding and glass effects */}
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              React.js
-            </span>
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              TypeScript
-            </span>
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              Next.js
-            </span>
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              Tailwind CSS
-            </span>
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              Three.js
-            </span>
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              UI/UX Design
-            </span>
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              GraphQL
-            </span>
-            <span className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default">
-              Node.js
-            </span>
+            {stacks.length > 0 ? stacks.map((stack) => (
+              <span
+                key={stack.id}
+                className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default"
+              >
+                {stack.name}
+              </span>
+            )) : <span
+              className="text-center mt-24 text-slate-500 font-light"
+            >
+              No stacks added yet
+            </span>}
           </div>
         </div>
       </section>
