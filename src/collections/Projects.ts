@@ -1,3 +1,4 @@
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import type { CollectionConfig } from 'payload'
 
 export const Projects: CollectionConfig = {
@@ -29,6 +30,7 @@ export const Projects: CollectionConfig = {
     },
     {
       type: 'row',
+
       fields: [
         {
           name: 'livePreview',
@@ -59,13 +61,97 @@ export const Projects: CollectionConfig = {
     },
     {
       name: 'techStack',
+      type: 'relationship',
+      relationTo: 'tech-stack',
+      hasMany: true,
+    },
+    {
+      name: 'challenge',
+      type: 'richText',
+      localized: true,
+      editor: lexicalEditor()
+    },
+    {
+      name: 'solution',
+      type: 'richText',
+      localized: true,
+      editor: lexicalEditor()
+    },
+    {
+      name: 'highlights',
+      type: 'array',
+      maxRows: 2,
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'description',
+          type: 'text',
+        },
+      ],
+    },
+    {
+      name: 'features',
+      type: 'array',
+      maxRows: 4,
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'description',
+          type: 'text',
+        },
+      ],
+    },
+    {
+      name: 'gallery',
       type: 'array',
       fields: [
         {
-          name: 'name',
-          type: 'text',
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+      ],
+    },
+    {
+      name: 'category',
+      type: 'relationship',
+      relationTo: 'categories',
+      required: true,
+      hasMany: true,
+    },
+    {
+      name: 'type',
+      type: 'select',
+      options: [
+        {
+          label: 'POC (Proof of Concept)',
+          value: 'poc',
+        },
+        {
+          label: 'MVP (Minimum Viable Product)',
+          value: 'mvp',
+        },
+        {
+          label: 'Prototype',
+          value: 'prototype',
+        },
+        {
+          label: 'Production',
+          value: 'production',
+        },
+        {
+          label: 'Beta',
+          value: 'beta',
         }
-      ]
+      ],
+      defaultValue: 'poc',
+      required: true,
     }
   ],
 }

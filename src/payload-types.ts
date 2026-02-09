@@ -71,6 +71,8 @@ export interface Config {
     media: Media;
     projects: Project;
     'journey-items': JourneyItem;
+    'tech-stack': TechStack;
+    categories: Category;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +84,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'journey-items': JourneyItemsSelect<false> | JourneyItemsSelect<true>;
+    'tech-stack': TechStackSelect<false> | TechStackSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -151,6 +155,8 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  _key?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -174,12 +180,79 @@ export interface Project {
   image: number | Media;
   livePreview?: string | null;
   sourceCode?: string | null;
-  techStack?:
+  techStack?: (number | TechStack)[] | null;
+  challenge?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  solution?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  highlights?:
     | {
-        name?: string | null;
+        title?: string | null;
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
+  features?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  gallery?:
+    | {
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  category: (number | Category)[];
+  type: 'poc' | 'mvp' | 'prototype' | 'production' | 'beta';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tech-stack".
+ */
+export interface TechStack {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -197,14 +270,10 @@ export interface JourneyItem {
   endYear?: string | null;
   isCurrent?: boolean | null;
   responsibilities: string;
-  tags?:
-    | {
-        name?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string;
-  createdAt?: string;
+  techStack?: (number | TechStack)[] | null;
+  category: (number | Category)[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -245,6 +314,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'journey-items';
         value: number | JourneyItem;
+      } | null)
+    | ({
+        relationTo: 'tech-stack';
+        value: number | TechStack;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: number | Category;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -316,6 +393,8 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  _key?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -338,12 +417,31 @@ export interface ProjectsSelect<T extends boolean = true> {
   image?: T;
   livePreview?: T;
   sourceCode?: T;
-  techStack?:
+  techStack?: T;
+  challenge?: T;
+  solution?: T;
+  highlights?:
     | T
     | {
-        name?: T;
+        title?: T;
+        description?: T;
         id?: T;
       };
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  gallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  category?: T;
+  type?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -360,12 +458,26 @@ export interface JourneyItemsSelect<T extends boolean = true> {
   endYear?: T;
   isCurrent?: T;
   responsibilities?: T;
-  tags?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
+  techStack?: T;
+  category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tech-stack_select".
+ */
+export interface TechStackSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -91,14 +91,17 @@ export const JourneyItems: CollectionConfig = {
       required: true,
     },
     {
-      name: 'tags',
-      type: 'array',
-      fields: [
-        {
-          name: 'name',
-          type: 'text',
-        },
-      ],
+      name: 'techStack',
+      type: 'relationship',
+      relationTo: 'tech-stack',
+      hasMany: true,
+    },
+    {
+      name: 'category',
+      type: 'relationship',
+      relationTo: 'categories',
+      required: true,
+      hasMany: true,
     },
   ],
 }
