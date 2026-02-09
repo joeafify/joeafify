@@ -9,6 +9,8 @@ import { usePathname } from "next/navigation";
 export default function ConfigurationSwitcher() {
   const pathname = usePathname();
 
+  return null;
+
   return (
     <nav className={`fixed top-0 ${pathname?.split("/")[1] === "ar" ? "left-38" : "right-38"} w-full z-60 py-6 px-6 md:px-20 flex justify-between items-center pointer-events-none`}>
       <div className="pointer-events-auto"></div>
