@@ -1,8 +1,7 @@
-import { Locale } from '@/i18n-config';
 import ProjectsList from './ProjectsList';
 import { getProjects } from './actions';
 
-export default async function ProjectsPage({ params }: { params: Promise<{ lang: Locale }> }) {
+export default async function ProjectsPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang: locale } = await params;
 
   const { projects: initialProjects, hasNextPage: initialHasNextPage } = await getProjects({

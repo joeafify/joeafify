@@ -1,16 +1,23 @@
 'use client';
 
+import SquareLoader from '@/components/SquareLoader';
 import { Locale } from '@/i18n-config';
-import { Media, Project } from '@/payload-types';
-import { Cuboid, Loader2 } from "lucide-react";
+import { Media, Project, TechStack } from '@/payload-types';
+import { getRedirectedPathName } from '@/utils/i18n';
+import { Cuboid } from "lucide-react";
+import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { getProjects } from './actions';
-import SquareLoader from '@/components/SquareLoader';
+
+interface ProjectWithBlur extends Omit<Project, 'image'> {
+  image: number | (Media & { blurredDataUrl?: string });
+}
 
 interface ProjectsListProps {
   initialProjects: Project[];
   initialHasNextPage: boolean;
-  locale: Locale;
+  locale: Locale | string;
 }
 
 export default function ProjectsList({
@@ -76,16 +83,21 @@ export default function ProjectsList({
         {projects.map((project) => {
           const { id, title, description, image, techStack } = project;
           return (
-            <div
+            <Link
+              href={getRedirectedPathName(`/projects/${id}`, locale)}
               key={id}
               className="group relative aspect-square rounded-xl overflow-hidden glass border-white/5 flex flex-col"
             >
               <div className="h-full w-full relative">
                 {(image as Media)?.url ? (
-                  <img
-                    alt={(image as Media)?.alt ??  title}
-                    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+                  <Image
                     src={(image as Media).url!}
+                    alt={(image as Media)?.alt ?? title}
+                    width={(image as Media)?.width ?? 0}
+                    height={(image as Media)?.height ?? 0}
+                    placeholder={(image as any).blurredDataUrl ? "blur" : "empty"}
+                    blurDataURL={(image as any).blurredDataUrl}
+                    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                   />
                 ) : (
                   <div className="h-full w-full flex items-center justify-center bg-slate-900">
@@ -102,17 +114,17 @@ export default function ProjectsList({
                         key={index}
                         className="text-[9px] px-2 py-0.5 rounded-full border border-ocean-light/30 bg-ocean-light/10 text-ocean-light font-bold uppercase tracking-widest"
                       >
-                        {item.name}
+                        {(item as TechStack).name}
                       </span>
                     ))}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
                   <p className="text-xs text-slate-400 opacity-0 group-hover:opacity-100 h-0 group-hover:h-auto transition-all duration-300">
-                    {description}
+                    {/* {description} */}
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

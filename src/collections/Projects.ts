@@ -1,157 +1,157 @@
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import type { CollectionConfig } from 'payload'
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import type { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
-  slug: 'projects',
+  slug: "projects",
   admin: {
-    useAsTitle: 'title',
+    useAsTitle: "title",
   },
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
+      name: "title",
+      type: "text",
       // required: true,
       localized: true,
     },
     {
-      name: 'description',
-      type: 'textarea',
+      name: "description",
+      type: "textarea",
       // required: true,
       localized: true,
     },
     {
-      name: 'image',
-      type: 'upload',
-      relationTo: 'media',
+      name: "image",
+      type: "upload",
+      relationTo: "media",
       required: true,
     },
     {
-      type: 'row',
+      type: "row",
 
       fields: [
         {
-          name: 'livePreview',
-          type: 'text',
-          defaultValue: '',
+          name: "livePreview",
+          type: "text",
+          defaultValue: "",
           validate: (value: string | null | undefined) => {
             try {
-              value && new URL(value)
-              return true
+              value && new URL(value);
+              return true;
             } catch (e) {
-              return 'Live preview must be a valid URL'
+              return "Live preview must be a valid URL";
             }
           },
         },
         {
-          name: 'sourceCode',
-          type: 'text',
+          name: "sourceCode",
+          type: "text",
           validate: (value: string | null | undefined) => {
             try {
-              value && new URL(value)
-              return true
+              value && new URL(value);
+              return true;
             } catch (e) {
-              return 'Source code must be a valid URL'
+              return "Source code must be a valid URL";
             }
           },
-        }
-      ]
+        },
+      ],
     },
     {
-      name: 'techStack',
-      type: 'relationship',
-      relationTo: 'tech-stack',
+      name: "techStack",
+      type: "relationship",
+      relationTo: "tech-stack",
       hasMany: true,
     },
     {
-      name: 'challenge',
-      type: 'richText',
+      name: "challenge",
+      type: "richText",
       localized: true,
-      editor: lexicalEditor()
+      editor: lexicalEditor(),
     },
     {
-      name: 'solution',
-      type: 'richText',
+      name: "solution",
+      type: "richText",
       localized: true,
-      editor: lexicalEditor()
+      editor: lexicalEditor(),
     },
     {
-      name: 'highlights',
-      type: 'array',
+      name: "highlights",
+      type: "array",
       maxRows: 2,
       fields: [
         {
-          name: 'title',
-          type: 'text',
+          name: "title",
+          type: "text",
         },
         {
-          name: 'description',
-          type: 'text',
+          name: "description",
+          type: "text",
         },
       ],
     },
     {
-      name: 'features',
-      type: 'array',
+      name: "features",
+      type: "array",
       maxRows: 4,
       fields: [
         {
-          name: 'title',
-          type: 'text',
+          name: "title",
+          type: "text",
         },
         {
-          name: 'description',
-          type: 'text',
+          name: "description",
+          type: "text",
         },
       ],
     },
     {
-      name: 'gallery',
-      type: 'array',
+      name: "gallery",
+      type: "array",
       fields: [
         {
-          name: 'image',
-          type: 'upload',
-          relationTo: 'media',
+          name: "image",
+          type: "upload",
+          relationTo: "media",
         },
       ],
     },
     {
-      name: 'category',
-      type: 'relationship',
-      relationTo: 'categories',
+      name: "category",
+      type: "relationship",
+      relationTo: "categories",
       required: true,
       hasMany: true,
     },
     {
-      name: 'type',
-      type: 'select',
+      name: "type",
+      type: "select",
       options: [
         {
-          label: 'POC (Proof of Concept)',
-          value: 'poc',
+          label: "POC (Proof of Concept)",
+          value: "poc",
         },
         {
-          label: 'MVP (Minimum Viable Product)',
-          value: 'mvp',
+          label: "MVP (Minimum Viable Product)",
+          value: "mvp",
         },
         {
-          label: 'Prototype',
-          value: 'prototype',
+          label: "Prototype",
+          value: "prototype",
         },
         {
-          label: 'Production',
-          value: 'production',
+          label: "Production",
+          value: "production",
         },
         {
-          label: 'Beta',
-          value: 'beta',
-        }
+          label: "Beta",
+          value: "beta",
+        },
       ],
-      defaultValue: 'poc',
+      defaultValue: "poc",
       required: true,
-    }
+    },
   ],
-}
+};
