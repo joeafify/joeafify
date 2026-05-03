@@ -3,7 +3,22 @@
     "home": "Home",
     "journey": "Work",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "settings": "Settings"
+  },
+  "settings": {
+    "language": {
+      "title": "Language"
+    },
+    "color": {
+      "title": "Theme"
+    },
+    "theme": {
+      "title": "Color",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
   },
   "home": {
     "badge": "Available for new projects",
@@ -84,5 +99,47 @@
     "subtitle_part2": "or maybe it never existed.",
     "description": "Either way, you're not lost, you're just exploring the unknown. Let's get you back on track.",
     "back_home": "Back to Home"
+  },
+  "project_details": {
+    "nav": {
+      "intro": "Intro",
+      "details": "Details",
+      "stack": "Stack",
+      "gallery": "Gallery"
+    },
+    "hero": {
+      "live_demo": "Live Demo",
+      "view_code": "View Code"
+    },
+    "overview": {
+      "challenge": "The Challenge",
+      "solution": "The Solution",
+      "performance_title": "Performance First",
+      "performance_desc": "98/100 Lighthouse score achieved through aggressive code splitting and image optimization.",
+      "realtime_title": "Real-time Sync",
+      "realtime_desc": "WebSocket integration for live sensor feeds with zero perceptible latency."
+    },
+    "stack": {
+      "badge": "Built With"
+    },
+    "features": {
+      "title": "Core Features",
+      "feature1_title": "Interactive Heatmaps",
+      "feature1_desc": "Visualizing ocean temperature fluctuations with precise geographical pinpointing.",
+      "feature2_title": "Multi-Device Responsive Sync",
+      "feature2_desc": "The dashboard state persists across mobile and desktop for field researchers.",
+      "feature3_title": "AI-Powered Forecasting",
+      "feature3_desc": "Predictive modeling for tide levels and storm surges integrated into the main view."
+    },
+    "gallery": {
+      "title": "Visual Showcase",
+      "subtitle": "A deep dive into the interface details"
+    },
+    "cta": {
+      "title": "Intrigued by this build?",
+      "description": "I am available for similar data-driven projects or architectural consulting. Let's make something functional and beautiful.",
+      "start_project": "Start a Project",
+      "back_portfolio": "Back to Portfolio"
+    }
   }
 }

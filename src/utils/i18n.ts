@@ -7,11 +7,17 @@ import { type Locale } from "@/i18n-config";
  * @param locale - The target locale to redirect to.
  * @returns The newly constructed pathname with the target locale.
  */
-export function getRedirectedPathName(pathname: string, locale: Locale): string {
+export function getRedirectedPathName(pathname: string, locale: Locale | string): string {
   if (!pathname) return "/";
   const segments = pathname.split("/");
-  segments[1] = locale;
-  return segments.join("/");
+  const isLocalized = segments[1] && segments[1].length === 2; // Basic check for locale segment (e.g., 'en', 'ar')
+
+  if (isLocalized) {
+    segments[1] = locale;
+    return segments.join("/");
+  }
+
+  return `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`;
 }
 
 /**

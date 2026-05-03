@@ -1,6 +1,5 @@
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
-import ConfigurationSwitcher from "@/components/ConfigurationSwitcher";
 import Footer from "@/components/Footer";
 import { getDictionary } from "@/get-dictionary";
 import { i18n } from "@/i18n-config";
@@ -44,7 +43,6 @@ export default async function RootLayout({
       <body
         className={`${lang === "ar" ? rubik.variable : spaceGrotesk.variable} antialiased font-display-${lang} bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white`}
       >
-        <ConfigurationSwitcher />
         {children}
         <Footer dict={dict} />
       </body>

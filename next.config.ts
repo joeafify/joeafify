@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
         hostname: "avatars.githubusercontent.com",
       },
       {
-        protocol: "https",
+        protocol: "http",
         hostname: "localhost",
       },
     ],
