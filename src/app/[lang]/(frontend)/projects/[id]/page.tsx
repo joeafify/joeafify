@@ -17,6 +17,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug } from "../actions";
 import { HeroSection } from "./HeroSection";
+import ScrollNavigation from "@/components/ScrollNavigation";
 
 export default async function ProjectPage({
   params,
@@ -64,7 +65,7 @@ export default async function ProjectPage({
   return (
     <div className="relative">
       {/* Scroll Navigation */}
-      {/* <ScrollNavigation dict={dict} items={projectNavItems} /> */}
+      <ScrollNavigation dict={dict} items={projectNavItems} showSettings={false} />
 
       <HeroSection
         project={project}
@@ -183,7 +184,7 @@ export default async function ProjectPage({
             {project.gallery?.map(({ id, image }: any) => (
               <div
                 key={id}
-                className="flex-none w-[80vw] md:w-[600px] aspect-16/10 glass rounded-2xl overflow-hidden shadow-2xl group relative"
+                className="flex-none w-[80vw] md:w-150 aspect-16/10 glass rounded-2xl overflow-hidden shadow-2xl group relative"
               >
                 <Image
                   key={id}

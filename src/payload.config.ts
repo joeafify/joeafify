@@ -40,10 +40,11 @@ export default buildConfig({
   plugins: [
     uploadthingStorage({
       collections: {
-        media: {
-          prefix: 'media',
-          generateFileURL: (filename) => `${env.SITE_URL}/api/${filename.prefix}/file/${filename.filename}`
-        },
+        media: true,
+        // media: {
+        //   prefix: 'media',
+        //   generateFileURL: (filename) => `${env.SITE_URL}/api/${filename.prefix}/file/${filename.filename}`
+        // },
       },
       options: {
         token: env.UPLOADTHING_TOKEN,

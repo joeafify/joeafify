@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { getPayload } from "payload";
+import * as motion from "motion/react-client";
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
@@ -30,9 +31,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <main>
       {/* Hero Section */}
-      <section
+      <motion.section
         className="relative min-h-screen flex items-center justify-center overflow-hidden px-6"
         id="home"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ amount: 0.3 }}
       >
         {/* Abstract Geometric Shapes */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -78,7 +83,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </a>
           </div>
         </div>
-      </section>
+      </motion.section>
       {/* About Section - Asymmetric Layout */}
       <section className="py-24 px-6 md:px-20 max-w-7xl mx-auto" id="about">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-15 items-center">
@@ -105,7 +110,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <div className="md:col-span-7 flex flex-col gap-6">
             <h2 className="text-4xl md:text-5xl font-black tracking-tight dark:text-white">
               {dict.about.title}{" "}
-              <span className="text-ocean-light">{dict.about.title_highlight}</span>
+              <span className="text-primary">{dict.about.title_highlight}</span>
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed">{dict.about.description}</p>
             <div className="grid grid-cols-2 gap-8 py-4">
@@ -141,18 +146,20 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {/* Floating tags simulated with varied padding and glass effects */}
-            {stacks.length > 0 ? stacks.map((stack) => (
-              <span
-                key={stack.id}
-                className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default"
-              >
-                {stack.name}
+            {stacks.length > 0 ? (
+              stacks.map((stack) => (
+                <span
+                  key={stack.id}
+                  className="glass px-4 py-2 rounded-full text-white font-medium hover:text-primary hover:border-primary transition-all cursor-default"
+                >
+                  {stack.name}
+                </span>
+              ))
+            ) : (
+              <span className="text-center mt-24 text-slate-500 font-light">
+                No stacks added yet
               </span>
-            )) : <span
-              className="text-center mt-24 text-slate-500 font-light"
-            >
-              No stacks added yet
-            </span>}
+            )}
           </div>
         </div>
       </section>
@@ -165,7 +172,10 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </h2>
             <p className="text-slate-400">{dict.projects.description}</p>
           </div>
-          <Link className="group flex items-center gap-2 font-bold text-primary" href={getRedirectedPathName(`/${lang}/projects`, lang)}>
+          <Link
+            className="group flex items-center gap-2 font-bold text-primary"
+            href={getRedirectedPathName(`/${lang}/projects`, lang)}
+          >
             {dict.projects.view_archive}
             {lang === "ar" ? (
               <ArrowLeft className="group-hover:translate-x-1 transition-transform" />
@@ -265,7 +275,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                 {dict.contact.location_label}
               </p>
               <p className="text-white font-medium flex items-center gap-2">
-                <MapPin className="text-ocean-light text-3xl group-hover:text-primary" />
+                <MapPin className="text-primary text-3xl group-hover:text-primary" />
                 {dict.contact.location_value}
               </p>
             </div>

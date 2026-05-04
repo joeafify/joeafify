@@ -29,7 +29,7 @@ export default function TimelineSidebar({ items, lang }: TimelineSidebarProps) {
   return (
     <div className="sticky top-32 h-fit ml-8">
       <div
-        className={`flex flex-col gap-2 items-end relative rounded-xl border-3 ${sectionIds.findIndex((id) => id === activeSection) % 2 === 0 ? "border-ocean-light/20" : "border-primary/20"} p-2`}
+        className={`flex flex-col gap-2 items-end relative rounded-xl border-3 ${sectionIds.findIndex((id) => id === activeSection) % 2 === 0 ? "border-secondary/20" : "border-primary/20"} p-2`}
       >
         {Array.from(dates).map((item, index) => {
           const id = `journey-${item}`;
@@ -41,7 +41,7 @@ export default function TimelineSidebar({ items, lang }: TimelineSidebarProps) {
               href={`#${id}`}
               className={`group w-full justify-center flex items-center gap-4 px-4 py-2 transition-all rounded-lg duration-300 cursor-pointer ${isActive
                 ? index % 2 === 0
-                  ? "bg-ocean-light scale-105 "
+                  ? "bg-secondary scale-105 "
                   : "bg-primary scale-105 "
                 : "bg-transparent text-white hover:bg-white/5"
                 } `}

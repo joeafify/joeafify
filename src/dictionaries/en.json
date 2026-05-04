@@ -10,14 +10,14 @@
     "language": {
       "title": "Language"
     },
-    "color": {
-      "title": "Theme"
-    },
     "theme": {
-      "title": "Color",
+      "title": "Theme",
       "light": "Light",
       "dark": "Dark",
       "system": "System"
+    },
+    "color": {
+      "title": "Color"
     }
   },
   "home": {

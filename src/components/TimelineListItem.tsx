@@ -1,5 +1,6 @@
 import { Category, JourneyItem, TechStack } from "@/payload-types";
 import { formatYear } from "@/utils/i18n";
+import { motion } from "motion/react";
 
 export default function TimelineListItem({
   startMonth,
@@ -17,9 +18,9 @@ export default function TimelineListItem({
 }: JourneyItem & { alignment: string; lang: string; dict: { journey: { present: string }; months: Record<string, string> } }) {
   const isLeft = alignment === "left";
   const colorClass = isLeft
-    ? "text-ocean-light border-ocean-light/20"
+    ? "text-secondary border-secondary/20"
     : "text-primary border-primary/20";
-  const nodeBorderClass = isLeft ? "border-ocean-light" : "border-primary";
+  const nodeBorderClass = isLeft ? "border-secondary" : "border-primary";
 
   // Use year as ID
   const id = `journey-${startYear}`;
@@ -30,9 +31,13 @@ export default function TimelineListItem({
   const formattedYears = `${startMonthDisplay} ${formatYear(startYear, lang)} - ${endYear ? `${endMonthDisplay} ${formatYear(endYear, lang)}` : dict.journey.present}`;
 
   return (
-    <div
+    <motion.div
       id={id}
       className={`relative flex flex-col md:flex-row items-start justify-between mb-12 md:mb-32 group last:mb-12 scroll-mt-32`}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       {/* Left Content (Desktop Only for 'Left' items) */}
       <div
@@ -42,7 +47,7 @@ export default function TimelineListItem({
           <>
             <div className={`inline-block px-3 py-1 mb-3 glass rounded-full border ${colorClass}`}>
               <span
-                className={`text-xs font-bold tracking-widest ${isLeft ? "text-ocean-light" : "text-primary"}`}
+                className={`text-xs font-bold tracking-widest ${isLeft ? "text-secondary" : "text-primary"}`}
               >
                 {formattedYears}
               </span>
@@ -53,7 +58,7 @@ export default function TimelineListItem({
               {[...(techStack || []), ...category]?.map((tag, index) => (
                 <span
                   key={index}
-                  className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-ocean-light border-ocean-light/20"}`}
+                  className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-secondary border-secondary/20"}`}
                 >
                   {(tag as TechStack | Category).name}
                 </span>
@@ -78,7 +83,7 @@ export default function TimelineListItem({
             {/* Duplicate content logic for mobile 'left' items shown on right, or normal right items */}
             <div className={`inline-block px-3 py-1 mb-3 glass rounded-full border ${colorClass}`}>
               <span
-                className={`text-xs font-bold tracking-widest ${!isLeft ? "text-primary" : "text-ocean-light"}`}
+                className={`text-xs font-bold tracking-widest ${!isLeft ? "text-primary" : "text-secondary"}`}
               >
                 {formattedYears}
               </span>
@@ -89,7 +94,7 @@ export default function TimelineListItem({
               {[...(techStack || []), ...category]?.map((tag, index) => (
                 <span
                   key={index}
-                  className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-ocean-light border-ocean-light/20"}`}
+                  className={`text-xs bg-white/5 px-2 py-1 rounded-full border-2 ${index % 2 === 0 ? "text-primary border-primary/20" : "text-secondary border-secondary/20"}`}
                 >
                   {(tag as TechStack | Category).name}
                 </span>
@@ -98,6 +103,6 @@ export default function TimelineListItem({
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

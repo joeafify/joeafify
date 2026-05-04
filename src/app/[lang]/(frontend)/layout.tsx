@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import Footer from "@/components/Footer";
+import PreferenceLoader from "@/components/PreferenceLoader";
 import { getDictionary } from "@/get-dictionary";
 import { i18n } from "@/i18n-config";
 import type { Metadata } from "next";
@@ -43,6 +44,7 @@ export default async function RootLayout({
       <body
         className={`${lang === "ar" ? rubik.variable : spaceGrotesk.variable} antialiased font-display-${lang} bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white`}
       >
+        <PreferenceLoader />
         {children}
         <Footer dict={dict} />
       </body>

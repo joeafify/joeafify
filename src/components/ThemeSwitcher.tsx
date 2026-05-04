@@ -1,21 +1,20 @@
 "use client";
 
+import { getCookie, setCookie } from "@/utils/cookies";
 import { Laptop, Moon, Sun } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark" | "system";
 
-const THEME_STORAGE_KEY = "NEXT_THEME";
+const THEME_COOKIE_KEY = "NEXT_THEME";
 
 export default function ThemeSwitcher() {
-  const pathname = usePathname();
   const [theme, setTheme] = useState<Theme>("system");
   const [mounted, setMounted] = useState(false);
 
-  // Initialize theme from localStorage on mount
+  // Initialize theme from cookies on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
+    const savedTheme = getCookie(THEME_COOKIE_KEY) as Theme | null;
     setTheme(savedTheme || "system");
     setMounted(true);
   }, []);
@@ -32,8 +31,8 @@ export default function ThemeSwitcher() {
           : "light"
         : theme;
 
-    // Update localStorage
-    localStorage.setItem(THEME_STORAGE_KEY, theme);
+    // Update cookie
+    setCookie(THEME_COOKIE_KEY, theme);
 
     // Update DOM
     if (effectiveTheme === "dark") {

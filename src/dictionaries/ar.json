@@ -10,14 +10,14 @@
     "language": {
       "title": "اللغة"
     },
-    "color": {
-      "title": "المظهر"
-    },
     "theme": {
       "title": "الوضع",
       "light": "فاتح",
       "dark": "داكن",
       "system": "النظام"
+    },
+    "color": {
+      "title": "المظهر"
     }
   },
   "home": {

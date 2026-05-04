@@ -81,7 +81,7 @@ export default function ScrollNavigation({
                 {dict.nav.settings}
               </span>
             </button>
-            <SettingsModal dict={dict} open={isSettingsOpen} onOpenChange={setIsSettingsOpen} />
+            {isSettingsOpen && <SettingsModal dict={dict} open={isSettingsOpen} onOpenChange={setIsSettingsOpen} />}
           </>
         )}
       </div>

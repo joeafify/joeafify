@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #6c2bee;
+  --color-primary: var(--primary-color, #6366f1);
+  --color-secondary: var(--secondary-color, #a855f7);
   --color-ocean-dark: #0f172a;
   --color-ocean-light: #38bdf8;
   --color-background-light: #f6f6f8;
@@ -18,13 +19,21 @@
 
 html {
   scroll-behavior: smooth;
+  --primary-color: #6366f1;
+  --secondary-color: #a855f7;
+
+  &:has(#settings-modal) {
+    scrollbar-width: none;
+  }
 }
 
-body.font-display-en * {
+body.font-display-en *,
+.font-display-en * {
   font-family: var(--font-space-grotesk), sans-serif !important;
 }
 
-body.font-display-ar * {
+body.font-display-ar *,
+.font-display-ar * {
   font-family: var(--font-rubik), sans-serif !important;
 }
 
@@ -39,7 +48,7 @@ body.font-display-ar * {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #38bdf8, #6c2bee);
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -49,7 +58,7 @@ body.font-display-ar * {
 }
 
 .timeline-line {
-  background: linear-gradient(to bottom, #38bdf8, #6c2bee, #38bdf8);
+  background: linear-gradient(to bottom, var(--secondary-color), var(--primary-color), var(--secondary-color));
 }
 
 .glow-node {
@@ -70,11 +79,11 @@ body.font-display-ar * {
     0 0 7px #fff,
     0 0 10px #fff,
     0 0 21px #fff,
-    0 0 42px #6c2bee,
-    0 0 82px #6c2bee,
-    0 0 92px #6c2bee,
-    0 0 102px #6c2bee,
-    0 0 151px #6c2bee;
+    0 0 42px var(--primary-color),
+    0 0 82px var(--primary-color),
+    0 0 92px var(--primary-color),
+    0 0 102px var(--primary-color),
+    0 0 151px var(--primary-color);
 }
 
 .floating-island {
@@ -100,19 +109,19 @@ body.font-display-ar * {
   }
 
   25% {
-    border-right-color: var(--color-ocean-light);
+    border-right-color: var(--color-secondary);
   }
 
   50% {
-    border-bottom-color: var(--color-ocean-light);
+    border-bottom-color: var(--color-secondary);
   }
 
   75% {
-    border-left-color: var(--color-ocean-light);
+    border-left-color: var(--color-secondary);
   }
 
   100% {
-    border-top-color: var(--color-ocean-light);
+    border-top-color: var(--color-secondary);
   }
 }
 
